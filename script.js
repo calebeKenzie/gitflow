@@ -19,7 +19,7 @@ async function putElementsInBody() {
     const currentPerson = arrCharecters[i];
     
     const name = document.createElement("p");
-    name.innerText = `Name: ${currentPerson.name}`;
+    name.innerText = `Name Completo: ${currentPerson.name}`;
     container.appendChild(name);
 
     const image = document.createElement("img")
@@ -29,6 +29,10 @@ async function putElementsInBody() {
     const specie = document.createElement("p");
     specie.innerText = `Specie: ${currentPerson.species}`; 
     container.appendChild(specie);
+
+    const specie2 = document.createElement("p");
+    specie.innerText = `Specie2: ${currentPerson.species}`; 
+    container.appendChild(specie2);
 
     div.appendChild(container);
   }
