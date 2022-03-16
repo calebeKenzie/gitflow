@@ -1,10 +1,37 @@
-function isEven(number) {
-  if (number % 2 === 0) {
-    return true;
-  }
-  return false;
+let page = 4
+
+async function getResultsByApi(){
+  const result = await fetch(`https://rickandmortyapi.com/api/character`)
+    .then(response => response.json())
+    .then(data => data.results)
+
+  return result;
 }
 
-const result = isEven(6);
+async function putElementsInBody() {
+  const arrCharecters = await getResultsByApi();
 
-console.log(result);
+  const div = document.querySelector("#toLocateCharacters");
+  console.log(div)
+
+  for (let i = 0; i < arrCharecters.length; i++) {
+    const container = document.createElement("div");
+    const currentPerson = arrCharecters[i];
+    
+    const name = document.createElement("p");
+    name.innerText = `Name: ${currentPerson.name}`;
+    container.appendChild(name);
+
+    const image = document.createElement("img")
+    image.src = currentPerson.image;
+    container.appendChild(image);
+
+    const specie = document.createElement("p");
+    specie.innerText = `Specie: ${currentPerson.species}`; 
+    container.appendChild(specie);
+
+    div.appendChild(container);
+  }
+}
+
+putElementsInBody()
